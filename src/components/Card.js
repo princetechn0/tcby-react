@@ -11,6 +11,8 @@ function CustomCard({ data }) {
     living_condition,
     description,
     creation_time,
+    latitude,
+    longitude,
   } = data;
 
   return (
@@ -23,6 +25,9 @@ function CustomCard({ data }) {
         <Card.Text>{living_condition}</Card.Text>
         <Card.Text>
           Last Seen: {moment(creation_time).format("MM/DD/YY")}
+        </Card.Text>
+        <Card.Text>
+          coordinates: {latitude} {longitude}
         </Card.Text>
       </Card.Body>
     </Card>

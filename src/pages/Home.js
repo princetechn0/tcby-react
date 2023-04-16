@@ -2,15 +2,22 @@ import { Container } from "react-bootstrap";
 import "../styles/Home.css";
 import { CustomModal } from "../components/Modal";
 import CustomListGroup from "../components/ListGroup";
+import { Maps } from "../components/Maps";
 
-export const Home = ({ cities }) => {
+export const Home = ({ cities, locations, onDataChange }) => {
   let filteredCities = [...new Set(cities)];
-  console.log("ftilered", filteredCities);
+
   return (
-    <Container>
-      <h1 className="text-center m-5">This could be you...</h1>
-      <CustomListGroup cities={filteredCities} />
-      <CustomModal />
-    </Container>
+    <>
+      <Container>
+        <h1 className="text-center m-5">This could be you...</h1>
+        <CustomListGroup cities={filteredCities} />
+        <CustomModal onDataChange={onDataChange} />
+      </Container>
+
+      <Container className="my-5">
+        <Maps locations={locations} />
+      </Container>
+    </>
   );
 };

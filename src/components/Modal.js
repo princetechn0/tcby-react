@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import { Stack } from "react-bootstrap";
 
-const postData = (formData) => {
+const postData = async (formData) => {
+  console.log(formData);
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -13,7 +14,7 @@ const postData = (formData) => {
   fetch(`http://localhost:3000/people/`, requestOptions);
 };
 
-function CustomForm({ handleClose }) {
+function CustomForm({ handleClose, handleDataChange }) {
   const [formData, setFormData] = useState({
     city: "",
     name: "",
@@ -21,6 +22,8 @@ function CustomForm({ handleClose }) {
     health_condition: "Average",
     living_condition: "Average",
     description: "",
+    latitude: "",
+    longitude: "",
   });
 
   const [validated, setValidated] = useState(false);
@@ -32,6 +35,7 @@ function CustomForm({ handleClose }) {
       event.stopPropagation();
     } else {
       postData(JSON.stringify(formData));
+      handleDataChange();
       handleClose();
     }
 
@@ -45,11 +49,19 @@ function CustomForm({ handleClose }) {
         `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyCQDYdr85yoCsnz8YWUq4GUL-5nQXBQGG4`
       );
       let data = await value.json();
+      console.log(data);
       data = data["results"].filter((e) => e.types.includes("locality"));
       data = data[0]["address_components"].filter((e) =>
         e.types.includes("locality")
       );
-      setFormData({ ...formData, city: data[0].long_name });
+      console.log(data[0].long_name, latitude, longitude);
+
+      setFormData({
+        ...formData,
+        city: data[0].long_name,
+        latitude: latitude,
+        longitude: longitude,
+      });
     });
   };
 
@@ -152,7 +164,7 @@ function CustomForm({ handleClose }) {
   );
 }
 
-export const CustomModal = () => {
+export const CustomModal = ({ onDataChange }) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -168,7 +180,10 @@ export const CustomModal = () => {
           <Modal.Title>Add a Person</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <CustomForm handleClose={handleClose} />
+          <CustomForm
+            handleClose={handleClose}
+            handleDataChange={onDataChange}
+          />
         </Modal.Body>
       </Modal>
     </div>

@@ -5,29 +5,56 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { City } from "./pages/City";
 import Layout from "./pages/Layout";
 import { Home } from "./pages/Home";
+import { About } from "./pages/About";
 
 function App() {
   const [cities, setCities] = useState([]);
+  const [mapPoints, setMapPoints] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetch(`http://localhost:3000/cities/`);
-      const JSON_CONVERT = await data.json();
-      console.log("converted json", JSON_CONVERT);
-      setCities(JSON_CONVERT);
-    };
     fetchData().catch(console.error);
   }, []);
+
+  const fetchData = async () => {
+    let data = await fetch(`http://localhost:3000/cities/`);
+    let JSON_CONVERT = await data.json();
+    console.log("converted json", JSON_CONVERT);
+    setCities(JSON_CONVERT);
+
+    data = await fetch(`http://localhost:3000/people/locations`);
+    JSON_CONVERT = await data.json();
+    console.log(" map points", JSON_CONVERT);
+    setMapPoints(JSON_CONVERT);
+  };
 
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<Home cities={cities} />} />
+            <Route
+              index
+              element={
+                <Home
+                  cities={cities}
+                  locations={mapPoints}
+                  onDataChange={() => fetchData()}
+                />
+              }
+            />
             {/* <Route path="city" element={<City />} /> */}
             <Route path="city/:cityName" element={<City />} />
-            <Route path="*" element={<Home cities={cities} />} />
+            <Route path="about" element={<About />} />
+            <Route
+              path="*"
+              element={
+                <Home
+                  cities={cities}
+                  locations={mapPoints}
+                  onDataChange={() => fetchData()}
+                />
+              }
+            />
           </Route>
         </Routes>
       </BrowserRouter>
