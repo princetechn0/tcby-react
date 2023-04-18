@@ -15,7 +15,8 @@ export const Home = ({ cities, locations, onDataChange }) => {
         <CustomModal onDataChange={onDataChange} />
       </Container>
 
-      <Container className="my-5">
+      <Container className="mapsContainer">
+        <p className="text-center"> Unhoused individuals near you </p>
         <Maps locations={locations} />
       </Container>
     </>
