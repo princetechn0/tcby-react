@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import { Stack } from "react-bootstrap";
+import FileBase64 from "react-file-base64";
 
 const postData = async (formData) => {
   console.log(formData);
@@ -24,7 +25,12 @@ function CustomForm({ handleClose, handleDataChange }) {
     description: "",
     latitude: "",
     longitude: "",
+    images: "",
   });
+
+  // useEffect(() => {
+  //   console.log(formData);
+  // }, [formData]);
 
   const [validated, setValidated] = useState(false);
   const handleSubmit = (event) => {
@@ -152,6 +158,28 @@ function CustomForm({ handleClose, handleDataChange }) {
           }
         />
       </Form.Group>
+      <Form.Group controlId="formFile" className="mb-3">
+        <Form.Label>Upload a picture </Form.Label>
+        {/* <Form.Control
+          as="input"
+          type="file"
+          accept="image/*"
+          value={formData.images}
+          multiple
+          onChange={(e) => {
+            console.log(e.target.files, e.target.value);
+            setFormData({ ...formData, images: e.target.value });
+        /> */}
+
+        <FileBase64
+          type="file"
+          multiple={true}
+          onDone={(values) =>
+            setFormData({ ...formData, images: values.map((e) => e.base64) })
+          }
+        />
+      </Form.Group>
+
       <Stack direction="horizontal" gap={3}>
         <Button className="ms-auto" variant="secondary" onClick={handleClose}>
           Close
