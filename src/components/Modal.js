@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import { Stack } from "react-bootstrap";
+
+const BACKEND_URL = "https://tcby.herokuapp.com";
 
 const postData = async (formData) => {
   // console.log(formData);
@@ -20,7 +22,7 @@ const postData = async (formData) => {
     method: "POST",
     body: newForm,
   };
-  fetch(`http://localhost:3000/people/`, requestOptions);
+  fetch(BACKEND_URL + `/people/`, requestOptions);
 };
 
 function CustomForm({ handleClose, handleDataChange }) {

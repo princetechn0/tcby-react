@@ -10,18 +10,19 @@ import { About } from "./pages/About";
 function App() {
   const [cities, setCities] = useState([]);
   const [mapPoints, setMapPoints] = useState([]);
+  const BACKEND_URL = "https://tcby.herokuapp.com";
 
   useEffect(() => {
     fetchData().catch(console.error);
   }, []);
 
   const fetchData = async () => {
-    let data = await fetch(`http://localhost:3000/cities/`);
+    let data = await fetch(BACKEND_URL + `/cities/`);
     let JSON_CONVERT = await data.json();
     console.log("converted json", JSON_CONVERT);
     setCities(JSON_CONVERT);
 
-    data = await fetch(`http://localhost:3000/people/locations`);
+    data = await fetch(BACKEND_URL + `people/locations`);
     JSON_CONVERT = await data.json();
     console.log(" map points", JSON_CONVERT);
     setMapPoints(JSON_CONVERT);

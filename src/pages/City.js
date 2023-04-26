@@ -11,7 +11,7 @@ export const City = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetch(`http://localhost:3000/cities/${cityName}`);
+      const data = await fetch(`https://tcby.herokuapp.com/cities/${cityName}`);
       if (data.ok) {
         const JSON_CONVERT = await data.json();
         console.log("city data", JSON_CONVERT);
