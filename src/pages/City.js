@@ -25,7 +25,7 @@ export const City = () => {
     <div>
       <Container>
         {lo.isEmpty(cityData) ? (
-          <h2 className="text-center mt-3"> Nobody in this city.</h2>
+          <h1 className="text-center my-5"> Nobody in this city.</h1>
         ) : (
           <>
             <h1 className="text-center my-5"> {cityName} </h1>

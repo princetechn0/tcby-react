@@ -5,11 +5,20 @@ import Form from "react-bootstrap/Form";
 import { Stack } from "react-bootstrap";
 
 const postData = async (formData) => {
-  console.log(formData);
+  // console.log(formData);
+  let newForm = new FormData();
+  for (let prop in formData) {
+    if (prop !== "images") {
+      newForm.append(prop, formData[prop]);
+    }
+  }
+  for (let i = 0; i < formData.images.length; i++) {
+    newForm.append("images", formData.images[i]);
+  }
+  console.log("final", newForm);
   const requestOptions = {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: formData,
+    body: newForm,
   };
   fetch(`http://localhost:3000/people/`, requestOptions);
 };
@@ -24,6 +33,7 @@ function CustomForm({ handleClose, handleDataChange }) {
     description: "",
     latitude: "",
     longitude: "",
+    images: "",
   });
 
   const [validated, setValidated] = useState(false);
@@ -34,7 +44,7 @@ function CustomForm({ handleClose, handleDataChange }) {
       event.preventDefault();
       event.stopPropagation();
     } else {
-      postData(JSON.stringify(formData));
+      postData(formData);
       handleDataChange();
       handleClose();
     }
@@ -152,6 +162,20 @@ function CustomForm({ handleClose, handleDataChange }) {
           }
         />
       </Form.Group>
+      <Form.Group controlId="formFile" className="mb-3">
+        <Form.Label>Upload a picture </Form.Label>
+        <Form.Control
+          as="input"
+          type="file"
+          accept="image/*"
+          multiple
+          onChange={(e) => {
+            console.log(e.target.files, e.target.value);
+            setFormData({ ...formData, images: [...e.target.files] });
+          }}
+        />
+      </Form.Group>
+
       <Stack direction="horizontal" gap={3}>
         <Button className="ms-auto" variant="secondary" onClick={handleClose}>
           Close
