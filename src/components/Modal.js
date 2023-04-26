@@ -3,14 +3,22 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import { Stack } from "react-bootstrap";
-import FileBase64 from "react-file-base64";
 
 const postData = async (formData) => {
-  console.log(formData);
+  // console.log(formData);
+  let newForm = new FormData();
+  for (let prop in formData) {
+    if (prop !== "images") {
+      newForm.append(prop, formData[prop]);
+    }
+  }
+  for (let i = 0; i < formData.images.length; i++) {
+    newForm.append("images", formData.images[i]);
+  }
+  console.log("final", newForm);
   const requestOptions = {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: formData,
+    body: newForm,
   };
   fetch(`http://localhost:3000/people/`, requestOptions);
 };
@@ -28,10 +36,6 @@ function CustomForm({ handleClose, handleDataChange }) {
     images: "",
   });
 
-  // useEffect(() => {
-  //   console.log(formData);
-  // }, [formData]);
-
   const [validated, setValidated] = useState(false);
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -40,7 +44,7 @@ function CustomForm({ handleClose, handleDataChange }) {
       event.preventDefault();
       event.stopPropagation();
     } else {
-      postData(JSON.stringify(formData));
+      postData(formData);
       handleDataChange();
       handleClose();
     }
@@ -160,23 +164,15 @@ function CustomForm({ handleClose, handleDataChange }) {
       </Form.Group>
       <Form.Group controlId="formFile" className="mb-3">
         <Form.Label>Upload a picture </Form.Label>
-        {/* <Form.Control
+        <Form.Control
           as="input"
           type="file"
           accept="image/*"
-          value={formData.images}
           multiple
           onChange={(e) => {
             console.log(e.target.files, e.target.value);
-            setFormData({ ...formData, images: e.target.value });
-        /> */}
-
-        <FileBase64
-          type="file"
-          multiple={true}
-          onDone={(values) =>
-            setFormData({ ...formData, images: values.map((e) => e.base64) })
-          }
+            setFormData({ ...formData, images: [...e.target.files] });
+          }}
         />
       </Form.Group>
 
