@@ -22,7 +22,7 @@ function App() {
     console.log("converted json", JSON_CONVERT);
     setCities(JSON_CONVERT);
 
-    data = await fetch(BACKEND_URL + `people/locations`);
+    data = await fetch(BACKEND_URL + `/people/locations`);
     JSON_CONVERT = await data.json();
     console.log(" map points", JSON_CONVERT);
     setMapPoints(JSON_CONVERT);
