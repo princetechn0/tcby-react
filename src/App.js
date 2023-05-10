@@ -6,11 +6,11 @@ import { City } from "./pages/City";
 import Layout from "./pages/Layout";
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
+import { BACKEND_URL } from "./db";
 
 function App() {
   const [cities, setCities] = useState([]);
   const [mapPoints, setMapPoints] = useState([]);
-  const BACKEND_URL = "https://tcby.herokuapp.com";
 
   useEffect(() => {
     fetchData().catch(console.error);

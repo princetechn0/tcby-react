@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import lo from "lodash";
 import CustomCard from "../components/Card";
 import { Masonry } from "masonic";
+import { BACKEND_URL } from "../db";
 
 export const City = () => {
   const [cityData, setCityData] = useState([]);
@@ -11,7 +12,7 @@ export const City = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetch(`https://tcby.herokuapp.com/cities/${cityName}`);
+      const data = await fetch(`${BACKEND_URL}/cities/${cityName}`);
       if (data.ok) {
         const JSON_CONVERT = await data.json();
         console.log("city data", JSON_CONVERT);

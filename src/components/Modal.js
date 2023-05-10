@@ -3,8 +3,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import { Stack } from "react-bootstrap";
-
-const BACKEND_URL = "https://tcby.herokuapp.com";
+import { BACKEND_URL } from "../db";
 
 const postData = async (formData) => {
   // console.log(formData);
