@@ -197,12 +197,12 @@ export const CustomModal = ({ onDataChange }) => {
   return (
     <div className="d-flex justify-content-center">
       <Button variant="outline-dark " size="small" onClick={handleShow}>
-        Add a Person
+        Add Someone
       </Button>
 
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Add a Person</Modal.Title>
+          <Modal.Title>Add Someone</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <CustomForm
