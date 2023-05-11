@@ -11,12 +11,14 @@ import { BACKEND_URL } from "./db";
 function App() {
   const [cities, setCities] = useState([]);
   const [mapPoints, setMapPoints] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     fetchData().catch(console.error);
   }, []);
 
   const fetchData = async () => {
+    setIsLoading(true);
     let data = await fetch(BACKEND_URL + `/cities/`);
     let JSON_CONVERT = await data.json();
     console.log("converted json", JSON_CONVERT);
@@ -26,6 +28,7 @@ function App() {
     JSON_CONVERT = await data.json();
     console.log(" map points", JSON_CONVERT);
     setMapPoints(JSON_CONVERT);
+    setIsLoading(false);
   };
 
   return (
@@ -40,6 +43,7 @@ function App() {
                   cities={cities}
                   locations={mapPoints}
                   onDataChange={() => fetchData()}
+                  isLoading={isLoading}
                 />
               }
             />
@@ -53,6 +57,7 @@ function App() {
                   cities={cities}
                   locations={mapPoints}
                   onDataChange={() => fetchData()}
+                  isLoading={isLoading}
                 />
               }
             />
