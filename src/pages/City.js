@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Spinner } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import lo from "lodash";
 import CustomCard from "../components/Card";
@@ -8,15 +8,18 @@ import { BACKEND_URL } from "../db";
 
 export const City = () => {
   const [cityData, setCityData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const { cityName } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
       const data = await fetch(`${BACKEND_URL}/cities/${cityName}`);
       if (data.ok) {
         const JSON_CONVERT = await data.json();
         console.log("city data", JSON_CONVERT);
         setCityData(JSON_CONVERT);
+        setIsLoading(false);
       }
     };
     fetchData().catch(console.error);
@@ -25,7 +28,7 @@ export const City = () => {
   return (
     <div>
       <Container>
-        {lo.isEmpty(cityData) ? (
+        {lo.isEmpty(cityData) && !isLoading ? (
           <h1 className="text-center my-5"> Nobody in this city.</h1>
         ) : (
           <>
@@ -38,6 +41,14 @@ export const City = () => {
               overscanBy={5}
             />
           </>
+        )}
+
+        {isLoading && (
+          <div className="d-flex justify-content-center">
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          </div>
         )}
       </Container>
     </div>
