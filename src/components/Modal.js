@@ -21,7 +21,7 @@ const postData = async (formData) => {
     method: "POST",
     body: newForm,
   };
-  fetch(BACKEND_URL + `/people/`, requestOptions);
+  await fetch(BACKEND_URL + `/people/`, requestOptions);
 };
 
 function CustomForm({ handleClose, handleDataChange }) {
@@ -38,16 +38,16 @@ function CustomForm({ handleClose, handleDataChange }) {
   });
 
   const [validated, setValidated] = useState(false);
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     } else {
-      postData(formData);
-      handleDataChange();
       handleClose();
+      await postData(formData);
+      handleDataChange();
     }
 
     setValidated(true);
