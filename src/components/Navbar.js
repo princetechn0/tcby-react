@@ -19,6 +19,9 @@ function CustomNavbar() {
             <Nav.Link as={Link} to="/about">
               About
             </Nav.Link>
+            <Nav.Link as={Link} to="/login">
+              Log In
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

@@ -7,6 +7,7 @@ import Layout from "./pages/Layout";
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
 import { BACKEND_URL } from "./db";
+import { Login } from "./pages/Login";
 
 function App() {
   const [cities, setCities] = useState([]);
@@ -50,6 +51,7 @@ function App() {
             {/* <Route path="city" element={<City />} /> */}
             <Route path="city/:cityName" element={<City />} />
             <Route path="about" element={<About />} />
+            <Route path="login" element={<Login />} />
             <Route
               path="*"
               element={
