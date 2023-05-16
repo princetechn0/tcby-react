@@ -1,2 +1,5 @@
-[build]
-  command = "npm install --legacy-peer-deps"
+[[redirects]]
+  from = "/*"
+  to = "/"
+  status = 200
+  
