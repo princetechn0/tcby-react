@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom";
 import CustomNavbar from "../components/Navbar";
 
-const Layout = () => {
+const Layout = ({ loggedInUser }) => {
   return (
     <>
-      <CustomNavbar />
+      <CustomNavbar loggedInUser={loggedInUser} />
       <Outlet />
     </>
   );
