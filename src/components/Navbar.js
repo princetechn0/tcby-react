@@ -3,7 +3,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 
-function CustomNavbar() {
+function CustomNavbar({ loggedInUser }) {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -19,9 +19,16 @@ function CustomNavbar() {
             <Nav.Link as={Link} to="/about">
               About
             </Nav.Link>
+          </Nav>
+          <Nav className="ml-auto">
             <Nav.Link as={Link} to="/login">
               Log In
             </Nav.Link>
+            {loggedInUser && (
+              <Nav.Link as={Link} to="/login">
+                Current User: {loggedInUser}
+              </Nav.Link>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
