@@ -2,7 +2,3 @@
   from = "/*"
   to = "/"
   status = 200
-
-
-[build]
-  command = "npm install --legacy-peer-deps --force && npm run build"
