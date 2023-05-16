@@ -66,7 +66,12 @@ function App() {
             <Route path="about" element={<About />} />
             <Route
               path="login"
-              element={<Login setLoggedInUser={setLoggedInUser} />}
+              element={
+                <Login
+                  loggedInUser={loggedInUser}
+                  setLoggedInUser={setLoggedInUser}
+                />
+              }
             />
 
             <Route
