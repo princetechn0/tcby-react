@@ -1,34 +1,62 @@
 import { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
+import { auth } from "../UserAuthentication/firebase";
+import {
+  signInWithEmailAndPassword,
+  setPersistence,
+  browserLocalPersistence,
+  signOut,
+} from "firebase/auth";
+import ToastNotification from "../components/ToastNotification";
 
-export const Login = () => {
+export const Login = ({ setLoggedInUser }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-  const [validated, setValidated] = useState(false);
+  const [formValidated, setFormValidated] = useState(false);
   const isFormEmpty = formData.email === "" || formData.password === "";
 
-  const handleSubmit = async (event) => {
+  // Toast Message Functions
+  const [showToast, setShowtoast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+
+  const handleLogin = async (event) => {
     event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     } else {
-      console.log("submit login");
-      //   await postData(formData);
+      try {
+        await signInWithEmailAndPassword(
+          auth,
+          formData.email,
+          formData.password
+        );
+        await setPersistence(auth, browserLocalPersistence);
+        setLoggedInUser(formData.email);
+        setToastMessage(`Login Successful as ${formData.email}`);
+      } catch (err) {
+        await signOut(auth);
+        setLoggedInUser();
+        setToastMessage(`Login failed. Please try again.`);
+      }
+      setShowtoast(true);
     }
 
-    setValidated(true);
+    setFormValidated(true);
   };
-
   return (
     <Container className="text-center">
       <h1 className="m-5">Log In</h1>
-
+      <ToastNotification
+        onClose={() => setShowtoast(false)}
+        showToast={showToast}
+        message={toastMessage}
+      />
       <div className="col-8 col-md-6 mx-auto">
-        <Form noValidate validated={validated} onSubmit={handleSubmit}>
+        <Form noValidate validated={formValidated} onSubmit={handleLogin}>
           <Form.Group className="mb-3" controlId="validationCustom01">
             <Form.Label>Email</Form.Label>
             <Form.Control
@@ -64,7 +92,7 @@ export const Login = () => {
           </Form.Group>
 
           <Button
-            className="w-50"
+            className="w-50 p-2 mt-4"
             type="submit"
             variant="primary"
             disabled={isFormEmpty}
@@ -73,6 +101,14 @@ export const Login = () => {
           </Button>
         </Form>
       </div>
+
+      <h5 className="m-5">
+        To request a login, please{" "}
+        <a href="mailto:aliataya8917@gmail.com?subject=Account%20Creation%20Request:%20This%20Could%20be%20You">
+          email
+        </a>
+        .
+      </h5>
     </Container>
   );
 };

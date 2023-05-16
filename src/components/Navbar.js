@@ -21,9 +21,11 @@ function CustomNavbar({ loggedInUser }) {
             </Nav.Link>
           </Nav>
           <Nav className="ml-auto">
-            <Nav.Link as={Link} to="/login">
-              Log In
-            </Nav.Link>
+            {!loggedInUser && (
+              <Nav.Link as={Link} to="/login">
+                Log In
+              </Nav.Link>
+            )}
             {loggedInUser && (
               <Nav.Link as={Link} to="/login">
                 Current User: {loggedInUser}
