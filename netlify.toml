@@ -1,2 +1,2 @@
 [build]
-  command = "npm install --legacy-peer-deps && CI= npm run build"
+  command = "npm install --legacy-peer-deps"
