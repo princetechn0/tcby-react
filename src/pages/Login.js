@@ -36,7 +36,7 @@ export const Login = ({ setLoggedInUser }) => {
         );
         await setPersistence(auth, browserLocalPersistence);
         setLoggedInUser(formData.email);
-        setToastMessage(`Login Successful as ${formData.email}`);
+        setToastMessage(`Login successful as ${formData.email}`);
       } catch (err) {
         await signOut(auth);
         setLoggedInUser();
