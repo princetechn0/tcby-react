@@ -1,21 +1,35 @@
 import { Container } from "react-bootstrap";
+import "../styles/About.css";
 
 const facts = [
-  " In January 2020 , there were 580,466 people experiencing homelessness on our streets",
-  "7,877 deaths in 2020",
+  {
+    info: "In January 2020 , there were 580,466 people experiencing homelessness on our streets",
+    source:
+      "https://endhomelessness.org/homelessness-in-america/homelessness-statistics/state-of-homelessness/#key-facts",
+  },
+  {
+    info: "28% were people living in families with children",
+    source:
+      "https://endhomelessness.org/homelessness-in-america/homelessness-statistics/state-of-homelessness/",
+  },
+  { info: "7,877 deaths in 2020", source: "https://homelessdeathscount.org" },
 ];
 
 export const About = () => {
   return (
-    <Container className="text-center">
-      <h1 className="m-5">Homelessness</h1>
-      <ul style={{ listStyle: "none", fontSize: 24, lineHeight: 2 }}>
-        {facts.map((fact, index) => (
-          <li key={index} style={{ borderBottom: "3px solid black" }}>
-            {fact}
-          </li>
-        ))}
-      </ul>
+    <Container>
+      <h1 className="text-center m-5">Homelessness</h1>
+      {facts.map((elem) => (
+        <a
+          className="about-a"
+          href={elem.source}
+          target="_blank"
+          key={elem.info}
+          rel="noreferrer"
+        >
+          {elem.info}
+        </a>
+      ))}
     </Container>
   );
 };
