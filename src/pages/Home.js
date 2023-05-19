@@ -1,4 +1,4 @@
-import { Container, Spinner } from "react-bootstrap";
+import { Card, Container, Spinner } from "react-bootstrap";
 import "../styles/Home.css";
 import { CustomModal } from "../components/Modal";
 import CustomListGroup from "../components/ListGroup";
@@ -23,9 +23,13 @@ export const Home = ({ cities, locations, onDataChange, isLoading }) => {
         )}
       </Container>
 
-      <Container className="mapsContainer">
-        <p className="text-center"> Unhoused individuals near you </p>
-        <Maps locations={locations} />
+      <Container className="text-center mapsContainer">
+        <Card>
+          <Card.Header className="py-3">
+            Unhoused individuals near you
+          </Card.Header>
+          <Maps locations={locations} />
+        </Card>
       </Container>
     </>
   );

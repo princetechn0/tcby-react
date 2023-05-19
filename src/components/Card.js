@@ -44,7 +44,7 @@ function CustomCard({ data }) {
         images.length > 1 ? (
           <Carousel>
             {images.map((img) => (
-              <Carousel.Item>
+              <Carousel.Item key={img}>
                 <Card.Img variant="top" src={img} className="cardImg " />
               </Carousel.Item>
             ))}
