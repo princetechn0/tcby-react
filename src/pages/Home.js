@@ -10,7 +10,9 @@ export const Home = ({ cities, locations, onDataChange, isLoading }) => {
   return (
     <>
       <Container className="text-center">
-        <h1 className="m-5">This could be you...</h1>
+        <div className="title-container col-10">
+          <h1 className="title-text">This could be you...</h1>
+        </div>
         {!isLoading ? (
           <>
             <CustomListGroup cities={filteredCities} />
