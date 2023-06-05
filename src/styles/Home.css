@@ -2,3 +2,21 @@
   margin-top: 3rem;
   margin-bottom: 5rem;
 }
+
+.title-container {
+  margin: 4rem;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: #065c76;
+  color: white;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+.title-text {
+  font-weight: 300;
+  letter-spacing: 1px;
+}

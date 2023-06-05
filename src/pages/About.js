@@ -18,7 +18,9 @@ const facts = [
 export const About = () => {
   return (
     <Container>
-      <h1 className="text-center m-5">Homelessness</h1>
+      <div className="about-container col-10">
+        <h1 className="about-text">About</h1>
+      </div>
       {facts.map((elem) => (
         <a
           className="about-a"
