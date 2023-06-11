@@ -5,6 +5,7 @@ import lo from "lodash";
 import CustomCard from "../components/Card";
 import { Masonry } from "masonic";
 import { BACKEND_URL } from "../db";
+import "../styles/City.css";
 
 export const City = () => {
   const [cityData, setCityData] = useState([]);
@@ -32,23 +33,27 @@ export const City = () => {
           <h1 className="text-center my-5"> Nobody in this city.</h1>
         ) : (
           <>
-            <h1 className="text-center my-5"> {cityName} </h1>
-            <Masonry
-              items={cityData}
-              render={CustomCard}
-              columnGutter={50}
-              columnWidth={333}
-              overscanBy={5}
-            />
-          </>
-        )}
+            <div className="title-container col-10">
+              <h1 className="title-text">{cityName}</h1>
+            </div>
+            <Container className="about-cards-container p-5 bg-light rounded-3">
+              <Masonry
+                items={cityData}
+                render={CustomCard}
+                columnGutter={50}
+                columnWidth={350}
+                overscanBy={5}
+              />
 
-        {isLoading && (
-          <div className="d-flex justify-content-center">
-            <Spinner animation="border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </Spinner>
-          </div>
+              {isLoading && (
+                <div className="d-flex justify-content-center">
+                  <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                </div>
+              )}
+            </Container>
+          </>
         )}
       </Container>
     </div>

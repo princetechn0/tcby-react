@@ -15,8 +15,10 @@ export const Home = ({ cities, locations, onDataChange, isLoading }) => {
         </div>
         {!isLoading ? (
           <>
-            <CustomListGroup cities={filteredCities} />
-            <CustomModal onDataChange={onDataChange} />
+            <Container className="about-cards-container py-5 bg-light rounded-3 col-12 col-md-8">
+              <CustomListGroup cities={filteredCities} />
+              <CustomModal onDataChange={onDataChange} />
+            </Container>
           </>
         ) : (
           <Spinner animation="border" role="status">
