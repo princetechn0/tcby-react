@@ -58,11 +58,15 @@ function App() {
                   locations={mapPoints}
                   onDataChange={() => fetchData()}
                   isLoading={isLoading}
+                  loggedInUser={loggedInUser}
                 />
               }
             />
             {/* <Route path="city" element={<City />} /> */}
-            <Route path="city/:cityName" element={<City />} />
+            <Route
+              path="city/:cityName"
+              element={<City loggedInUser={loggedInUser} />}
+            />
             <Route path="about" element={<About />} />
             <Route
               path="login"
@@ -82,6 +86,7 @@ function App() {
                   locations={mapPoints}
                   onDataChange={() => fetchData()}
                   isLoading={isLoading}
+                  loggedInUser={loggedInUser}
                 />
               }
             />

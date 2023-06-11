@@ -6,8 +6,9 @@ import CustomCard from "../components/Card";
 import { Masonry } from "masonic";
 import { BACKEND_URL } from "../db";
 import "../styles/City.css";
+import { LoggedInContext } from "../context/LoggedInContext";
 
-export const City = () => {
+export const City = ({ loggedInUser }) => {
   const [cityData, setCityData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { cityName } = useParams();
@@ -27,7 +28,7 @@ export const City = () => {
   }, []);
 
   return (
-    <div>
+    <LoggedInContext.Provider value={loggedInUser}>
       <Container>
         {lo.isEmpty(cityData) && !isLoading ? (
           <h1 className="text-center my-5"> Nobody in this city.</h1>
@@ -56,6 +57,6 @@ export const City = () => {
           </>
         )}
       </Container>
-    </div>
+    </LoggedInContext.Provider>
   );
 };

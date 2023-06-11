@@ -195,7 +195,7 @@ export const CustomModal = ({ onDataChange }) => {
   const handleShow = () => setShow(true);
 
   return (
-    <div className="d-flex justify-content-center">
+    <div className="d-flex justify-content-center mt-5">
       <Button variant="outline-dark " size="lg" onClick={handleShow}>
         Add a Person
       </Button>
