@@ -1,4 +1,4 @@
-.about-container {
+.about-title {
   margin: 4rem;
   margin-right: auto;
   margin-left: auto;
@@ -11,9 +11,17 @@
   border-radius: 5px;
 }
 
-.about-text {
+.about-title h1 {
   font-weight: 300;
   letter-spacing: 1px;
+}
+
+/* media query for smartphones */
+@media (max-width: 600px) {
+  .about-cards-container {
+    padding: 0 !important;
+    background-color: white !important;
+  }
 }
 
 .hoverable {
