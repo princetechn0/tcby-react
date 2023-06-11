@@ -196,7 +196,7 @@ export const CustomModal = ({ onDataChange }) => {
 
   return (
     <div className="d-flex justify-content-center">
-      <Button variant="outline-dark " size="small" onClick={handleShow}>
+      <Button variant="outline-dark " size="lg" onClick={handleShow}>
         Add a Person
       </Button>
 

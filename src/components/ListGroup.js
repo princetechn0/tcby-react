@@ -6,10 +6,10 @@ import { Badge } from "react-bootstrap";
 function CustomListGroup({ cities }) {
   return (
     <div className="CustomListGroup">
-      <ListGroup className="my-5">
+      <ListGroup className="mb-5">
         {cities.map((city) => (
           <ListGroup.Item
-            className="col-10 col-lg-5 mx-auto d-flex justify-content-between align-items-center"
+            className="col-10 col-lg-8 mx-auto d-flex justify-content-between align-items-center"
             key={city.city}
             as={Link}
             to={"city/" + city.city}
