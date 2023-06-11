@@ -6,7 +6,7 @@ import { Badge } from "react-bootstrap";
 function CustomListGroup({ cities }) {
   return (
     <div className="CustomListGroup">
-      <ListGroup className="mb-5">
+      <ListGroup>
         {cities.map((city) => (
           <ListGroup.Item
             className="col-10 col-lg-8 mx-auto d-flex justify-content-between align-items-center"

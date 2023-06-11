@@ -2,8 +2,11 @@ import { Card, Carousel, Button } from "react-bootstrap/";
 import "../styles/City.css";
 import moment from "moment";
 import { isEmpty } from "lodash";
+import { useContext } from "react";
+import { LoggedInContext } from "../context/LoggedInContext";
 
 function CustomCard({ data }) {
+  const isLoggedIn = useContext(LoggedInContext);
   let {
     city,
     name,
@@ -59,7 +62,7 @@ function CustomCard({ data }) {
         <Card.Text>{description}</Card.Text>
         <Card.Text>Living Condition: {living_condition}</Card.Text>
         <Card.Text>Current Health: {health_condition}</Card.Text>
-        {!isEmpty(latitude) && (
+        {!isEmpty(latitude) && !isEmpty(isLoggedIn) && (
           <Button
             variant="primary "
             size="sm"

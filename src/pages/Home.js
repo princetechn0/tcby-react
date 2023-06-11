@@ -3,8 +3,15 @@ import "../styles/Home.css";
 import { CustomModal } from "../components/Modal";
 import CustomListGroup from "../components/ListGroup";
 import { Maps } from "../components/Maps";
+import lo from "lodash";
 
-export const Home = ({ cities, locations, onDataChange, isLoading }) => {
+export const Home = ({
+  cities,
+  locations,
+  onDataChange,
+  isLoading,
+  loggedInUser,
+}) => {
   let filteredCities = [...new Set(cities)];
 
   return (
@@ -15,9 +22,11 @@ export const Home = ({ cities, locations, onDataChange, isLoading }) => {
         </div>
         {!isLoading ? (
           <>
-            <Container className="about-cards-container py-5 bg-light rounded-3 col-12 col-md-8">
+            <Container className="about-cards-container py-5 mb-5 bg-light rounded-3 col-12 col-md-8">
               <CustomListGroup cities={filteredCities} />
-              <CustomModal onDataChange={onDataChange} />
+              {!lo.isEmpty(loggedInUser) && (
+                <CustomModal onDataChange={onDataChange} />
+              )}
             </Container>
           </>
         ) : (
@@ -27,14 +36,16 @@ export const Home = ({ cities, locations, onDataChange, isLoading }) => {
         )}
       </Container>
 
-      <Container className="text-center mapsContainer">
-        <Card>
-          <Card.Header className="py-3">
-            Unhoused individuals near you
-          </Card.Header>
-          <Maps locations={locations} />
-        </Card>
-      </Container>
+      {!lo.isEmpty(loggedInUser) && (
+        <Container className="text-center mapsContainer">
+          <Card>
+            <Card.Header className="py-3">
+              Unhoused individuals near you
+            </Card.Header>
+            <Maps locations={locations} />
+          </Card>
+        </Container>
+      )}
     </>
   );
 };
