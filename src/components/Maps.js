@@ -1,5 +1,5 @@
 import React from "react";
-import { Map, Marker, ZoomControl, Overlay } from "pigeon-maps";
+import { Map, Marker, ZoomControl } from "pigeon-maps";
 import { maptiler } from "pigeon-maps/providers";
 
 const maptilerProvider = maptiler("bVdARK2aJsp6cpYlTv6n", "streets");

@@ -41,7 +41,7 @@ export const Home = ({
           <Card.Header className="py-3">
             {loggedInUser
               ? "Unhoused individuals near you"
-              : "Please log in to see unhoused individuals near you"}
+              : "Please log in to see more information"}
           </Card.Header>
           <Maps locations={locations} loggedInUser={loggedInUser} />
         </Card>
