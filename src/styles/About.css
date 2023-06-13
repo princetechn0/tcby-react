@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,600&display=swap");
+
 .about-title {
   margin: 4rem;
   margin-right: auto;
@@ -9,6 +11,7 @@
   display: flex;
   justify-content: center;
   border-radius: 5px;
+  font-family: "Lora", serif;
 }
 
 .about-title h1 {

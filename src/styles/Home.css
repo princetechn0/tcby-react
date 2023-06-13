@@ -1,7 +1,4 @@
-.mapsContainer {
-  margin-top: 3rem;
-  margin-bottom: 5rem;
-}
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,600&display=swap");
 
 .title-container {
   margin-right: auto;
@@ -16,6 +13,48 @@
 }
 
 .title-text {
-  font-weight: 400;
-  letter-spacing: 1px;
+  font-family: "Lora", serif;
+}
+
+.typewriter {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: auto auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: 0.1em; /* Adjust as needed */
+  position: relative; /* Add position relative to contain the blinking caret */
+  animation: typing 5s steps(40, end);
+}
+
+.typewriter::after {
+  content: ""; /* Create a pseudo-element for the caret */
+  display: inline-block;
+  vertical-align: middle;
+  width: 0.15em; /* Width of the caret */
+  height: 1em; /* Height of the caret */
+  background-color: rgb(255, 255, 255); /* Color of the caret */
+  animation: blink-caret 1s step-end infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    opacity: 0; /* Hide the caret */
+  }
+  50% {
+    opacity: 1; /* Show the caret */
+  }
+}
+
+.mapsContainer {
+  margin-top: 3rem;
+  margin-bottom: 5rem;
 }
