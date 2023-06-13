@@ -11,9 +11,8 @@ export const Home = ({
   onDataChange,
   isLoading,
   loggedInUser,
+  generalGroupedCities,
 }) => {
-  let filteredCities = [...new Set(cities)];
-
   return (
     <>
       <Container className="text-center">
@@ -23,7 +22,7 @@ export const Home = ({
         {!isLoading ? (
           <>
             <Container className="about-cards-container py-5 mb-5 bg-light rounded-3 col-12 col-md-8">
-              <CustomListGroup cities={filteredCities} />
+              <CustomListGroup cities={cities} />
               {!lo.isEmpty(loggedInUser) && (
                 <CustomModal onDataChange={onDataChange} />
               )}
@@ -36,16 +35,20 @@ export const Home = ({
         )}
       </Container>
 
-      {!lo.isEmpty(loggedInUser) && (
-        <Container className="text-center mapsContainer">
-          <Card>
-            <Card.Header className="py-3">
-              Unhoused individuals near you
-            </Card.Header>
+      <Container className="text-center mapsContainer">
+        <Card>
+          <Card.Header className="py-3">
+            {loggedInUser
+              ? "Homeless individuals near you"
+              : "Cities with Homless Populations"}
+          </Card.Header>
+          {!isLoading && loggedInUser ? (
             <Maps locations={locations} />
-          </Card>
-        </Container>
-      )}
+          ) : (
+            <Maps locations={generalGroupedCities} />
+          )}
+        </Card>
+      </Container>
     </>
   );
 };

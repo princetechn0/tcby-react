@@ -5,9 +5,7 @@ import { maptiler } from "pigeon-maps/providers";
 const maptilerProvider = maptiler("bVdARK2aJsp6cpYlTv6n", "streets");
 
 export function Maps({ locations }) {
-  console.log("all locations", locations);
   let filteredLocations = locations.filter((e) => e.latitude !== "");
-
   let index = 0;
   return (
     <Map
@@ -18,14 +16,18 @@ export function Maps({ locations }) {
       height={500}
     >
       <ZoomControl />
-      {filteredLocations.map((e) => (
-        <Marker
-          key={index++}
-          color="blue"
-          width={50}
-          anchor={[+e.latitude, +e.longitude]}
-        />
-      ))}
+      {filteredLocations.map((e) => {
+        const randomColor =
+          "#" + Math.floor(Math.random() * 16777215).toString(16);
+        return (
+          <Marker
+            key={index++}
+            color={randomColor}
+            width={50}
+            anchor={[+e.latitude, +e.longitude]}
+          />
+        );
+      })}
     </Map>
   );
 }
