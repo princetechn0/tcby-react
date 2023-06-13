@@ -40,7 +40,7 @@ export const Home = ({
           <Card.Header className="py-3">
             {loggedInUser
               ? "Homeless individuals near you"
-              : "Cities with Homless Populations"}
+              : "Cities with Homeless Populations"}
           </Card.Header>
           {!isLoading && loggedInUser ? (
             <Maps locations={locations} />
