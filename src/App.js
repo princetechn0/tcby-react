@@ -15,11 +15,8 @@ function App() {
   const [loggedInUser, setLoggedInUser] = useState();
   const [cities, setCities] = useState([]);
   const [mapPoints, setMapPoints] = useState([]);
+  const [generalGroupedCities, setGeneralGroupedCities] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    fetchData().catch(console.error);
-  }, []);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -31,18 +28,29 @@ function App() {
     });
   }, []);
 
+  useEffect(() => {
+    fetchData().catch(console.error);
+  }, []);
+
   const fetchData = async () => {
     setIsLoading(true);
+
     let data = await fetch(BACKEND_URL + `/cities/`);
     let JSON_CONVERT = await data.json();
-    console.log("converted json", JSON_CONVERT);
+    console.log("List of Cities", JSON_CONVERT);
     setCities(JSON_CONVERT);
 
     data = await fetch(BACKEND_URL + `/people/locations`);
     JSON_CONVERT = await data.json();
-    console.log(" map points", JSON_CONVERT);
+    console.log("List of Map Locations of People", JSON_CONVERT);
     setMapPoints(JSON_CONVERT);
+
     setIsLoading(false);
+
+    data = await fetch(BACKEND_URL + `/cities/groupedLocations`);
+    JSON_CONVERT = await data.json();
+    console.log("General Cities", JSON_CONVERT);
+    setGeneralGroupedCities(JSON_CONVERT);
   };
 
   return (
@@ -56,6 +64,7 @@ function App() {
                 <Home
                   cities={cities}
                   locations={mapPoints}
+                  generalGroupedCities={generalGroupedCities}
                   onDataChange={() => fetchData()}
                   isLoading={isLoading}
                   loggedInUser={loggedInUser}
@@ -84,6 +93,7 @@ function App() {
                 <Home
                   cities={cities}
                   locations={mapPoints}
+                  generalGroupedCities={generalGroupedCities}
                   onDataChange={() => fetchData()}
                   isLoading={isLoading}
                   loggedInUser={loggedInUser}

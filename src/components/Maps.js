@@ -4,10 +4,8 @@ import { maptiler } from "pigeon-maps/providers";
 
 const maptilerProvider = maptiler("bVdARK2aJsp6cpYlTv6n", "streets");
 
-export function Maps({ locations, loggedInUser }) {
-  console.log("all locations", locations);
+export function Maps({ locations }) {
   let filteredLocations = locations.filter((e) => e.latitude !== "");
-
   let index = 0;
   return (
     <Map
@@ -18,15 +16,18 @@ export function Maps({ locations, loggedInUser }) {
       height={500}
     >
       <ZoomControl />
-      {loggedInUser &&
-        filteredLocations.map((e) => (
+      {filteredLocations.map((e) => {
+        const randomColor =
+          "#" + Math.floor(Math.random() * 16777215).toString(16);
+        return (
           <Marker
             key={index++}
-            color="blue"
+            color={randomColor}
             width={50}
             anchor={[+e.latitude, +e.longitude]}
           />
-        ))}
+        );
+      })}
     </Map>
   );
 }
