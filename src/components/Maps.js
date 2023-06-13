@@ -1,10 +1,10 @@
 import React from "react";
-import { Map, Marker, ZoomControl } from "pigeon-maps";
+import { Map, Marker, ZoomControl, Overlay } from "pigeon-maps";
 import { maptiler } from "pigeon-maps/providers";
 
 const maptilerProvider = maptiler("bVdARK2aJsp6cpYlTv6n", "streets");
 
-export function Maps({ locations }) {
+export function Maps({ locations, loggedInUser }) {
   console.log("all locations", locations);
   let filteredLocations = locations.filter((e) => e.latitude !== "");
 
@@ -18,14 +18,15 @@ export function Maps({ locations }) {
       height={500}
     >
       <ZoomControl />
-      {filteredLocations.map((e) => (
-        <Marker
-          key={index++}
-          color="blue"
-          width={50}
-          anchor={[+e.latitude, +e.longitude]}
-        />
-      ))}
+      {loggedInUser &&
+        filteredLocations.map((e) => (
+          <Marker
+            key={index++}
+            color="blue"
+            width={50}
+            anchor={[+e.latitude, +e.longitude]}
+          />
+        ))}
     </Map>
   );
 }

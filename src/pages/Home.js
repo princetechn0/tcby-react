@@ -36,16 +36,16 @@ export const Home = ({
         )}
       </Container>
 
-      {!lo.isEmpty(loggedInUser) && (
-        <Container className="text-center mapsContainer">
-          <Card>
-            <Card.Header className="py-3">
-              Unhoused individuals near you
-            </Card.Header>
-            <Maps locations={locations} />
-          </Card>
-        </Container>
-      )}
+      <Container className="text-center mapsContainer">
+        <Card>
+          <Card.Header className="py-3">
+            {loggedInUser
+              ? "Unhoused individuals near you"
+              : "Please log in to see unhoused individuals near you"}
+          </Card.Header>
+          <Maps locations={locations} loggedInUser={loggedInUser} />
+        </Card>
+      </Container>
     </>
   );
 };
