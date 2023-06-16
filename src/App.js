@@ -63,7 +63,7 @@ function App() {
               element={
                 <Home
                   cities={cities}
-                  locations={mapPoints}
+                  peopleLocations={mapPoints}
                   generalGroupedCities={generalGroupedCities}
                   onDataChange={() => fetchData()}
                   isLoading={isLoading}
@@ -92,7 +92,7 @@ function App() {
               element={
                 <Home
                   cities={cities}
-                  locations={mapPoints}
+                  peopleLocations={mapPoints}
                   generalGroupedCities={generalGroupedCities}
                   onDataChange={() => fetchData()}
                   isLoading={isLoading}

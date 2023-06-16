@@ -1,18 +1,20 @@
-import { Card, Container, Spinner } from "react-bootstrap";
+import { Container, Spinner, Tab, Tabs } from "react-bootstrap";
 import "../styles/Home.css";
 import { CustomModal } from "../components/Modal";
 import CustomListGroup from "../components/ListGroup";
 import { Maps } from "../components/Maps";
 import lo from "lodash";
+import { useState } from "react";
 
 export const Home = ({
   cities,
-  locations,
+  peopleLocations,
   onDataChange,
   isLoading,
   loggedInUser,
   generalGroupedCities,
 }) => {
+  const [tabKey, setTabKey] = useState("Cities");
   return (
     <>
       <Container className="text-center">
@@ -35,19 +37,29 @@ export const Home = ({
         )}
       </Container>
 
-      <Container className="text-center mapsContainer">
-        <Card>
-          <Card.Header className="py-3">
-            {loggedInUser
-              ? "Homeless individuals near you"
-              : "Cities with Homeless Populations"}
-          </Card.Header>
-          {!isLoading && loggedInUser ? (
-            <Maps locations={locations} />
-          ) : (
-            <Maps locations={generalGroupedCities} />
-          )}
-        </Card>
+      <Container className="text-center mapsContainer p-5 mb-5 bg-light rounded-3">
+        <h4 className="pb-5">
+          {tabKey === "Individuals"
+            ? "Homeless individuals near you"
+            : "Cities with Homeless Populations"}
+        </h4>
+        {!isLoading && loggedInUser ? (
+          <Tabs
+            fill={true}
+            defaultActiveKey="Cities"
+            activeKey={tabKey}
+            onSelect={(k) => setTabKey(k)}
+          >
+            <Tab eventKey="Cities" title="Cities">
+              <Maps locations={generalGroupedCities} />
+            </Tab>
+            <Tab eventKey="Individuals" title="Individuals">
+              <Maps locations={peopleLocations} />
+            </Tab>
+          </Tabs>
+        ) : (
+          <Maps locations={generalGroupedCities} />
+        )}
       </Container>
     </>
   );

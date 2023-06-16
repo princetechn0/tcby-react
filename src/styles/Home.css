@@ -60,3 +60,10 @@
   margin-top: 3rem;
   margin-bottom: 5rem;
 }
+
+/* media query for smartphones */
+@media (max-width: 600px) {
+  .mapsContainer {
+    border-radius: 0px !important;
+  }
+}
