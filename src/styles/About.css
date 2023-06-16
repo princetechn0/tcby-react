@@ -12,6 +12,8 @@
   justify-content: center;
   border-radius: 5px;
   font-family: "Lora", serif;
+  font-weight: 300;
+  font-style: italic;
 }
 
 .about-title h1 {
