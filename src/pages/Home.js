@@ -17,7 +17,7 @@ export const Home = ({
     <>
       <Container className="text-center">
         <div className="title-container col-10">
-          <h1 className="title-text typewriter">This could be you...</h1>
+          <h1 className="title-text typewriter py-2">This could be you...</h1>
         </div>
         {!isLoading ? (
           <>

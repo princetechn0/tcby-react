@@ -91,8 +91,8 @@ const CustomCard = ({ data }) => {
 export const About = () => {
   return (
     <Container className="my-5">
-      <div className="about-title col-10">
-        <h1>About</h1>
+      <div className="about-title col-10 text-center">
+        <h1 className="typewriter py-2">About...</h1>
       </div>
       <Container className="about-cards-container p-5 bg-light rounded-3">
         <Masonry
