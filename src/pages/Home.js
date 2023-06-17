@@ -37,12 +37,20 @@ export const Home = ({
         )}
       </Container>
 
-      <Container className="text-center mapsContainer p-5 mb-5 bg-light rounded-3">
-        <h4 className="pb-5">
-          {tabKey === "Individuals"
-            ? "Homeless individuals near you"
-            : "Cities with Homeless Populations"}
-        </h4>
+      <Container className="mapsContainer text-center p-5 mb-5 bg-light rounded-3">
+        <div className="pb-4">
+          <h4
+            style={{
+              paddingBottom: "10px",
+              borderBottom: "5px solid black",
+              display: "inline-block",
+            }}
+          >
+            {tabKey === "Individuals"
+              ? "Homeless individuals near you"
+              : "Cities with Homeless Populations"}
+          </h4>
+        </div>
         {!isLoading && loggedInUser ? (
           <Tabs
             fill={true}
