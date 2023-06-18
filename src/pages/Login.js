@@ -79,10 +79,10 @@ export const Login = ({ loggedInUser, setLoggedInUser }) => {
       {/* User Not Logged In */}
       {!loggedInUser && (
         <>
-          <div className="about-title col-10 text-center">
+          <div className="about-title col-md-10 text-center">
             <h1 className="typewriter  py-2">Log In...</h1>
           </div>
-          <div className="col-8 col-md-6 mx-auto p-5 m-5 bg-light rounded-3 ">
+          <div className="col-10 col-md-6 mx-auto p-5 m-5 bg-light rounded-3 ">
             <Form noValidate validated={formValidated} onSubmit={handleLogin}>
               <Form.Group className="mb-3" controlId="validationCustom01">
                 <Form.Label>Email</Form.Label>

@@ -24,7 +24,7 @@
   margin: auto auto; /* Gives that scrolling effect as the typing happens */
   letter-spacing: 0.1em; /* Adjust as needed */
   position: relative; /* Add position relative to contain the blinking caret */
-  animation: typing 5s steps(40, end);
+  animation: typing 4s steps(40, end);
 }
 
 .typewriter::after {
