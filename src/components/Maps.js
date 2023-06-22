@@ -9,7 +9,7 @@ export function Maps({ locations }) {
   let index = 0;
   return (
     <Map
-      zoom={3}
+      zoom={4}
       center={[36.0902, -99.7129]}
       provider={maptilerProvider}
       dprs={[1, 2]}
