@@ -2,6 +2,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { Link } from "react-router-dom";
 import "../styles/ListGroup.css";
 import { Badge } from "react-bootstrap";
+import React from "react";
 
 function CustomListGroup({ cities }) {
   return (

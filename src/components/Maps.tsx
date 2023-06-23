@@ -5,8 +5,8 @@ import { maptiler } from "pigeon-maps/providers";
 const maptilerProvider = maptiler("bVdARK2aJsp6cpYlTv6n", "streets");
 
 export function Maps({ locations }) {
-  let filteredLocations = locations.filter((e) => e.latitude !== "");
-  let index = 0;
+  let filteredLocations: any[] = locations.filter((e) => e.latitude !== "");
+  let index: number = 0;
   return (
     <Map
       zoom={4}

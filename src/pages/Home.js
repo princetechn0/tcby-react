@@ -1,8 +1,8 @@
 import { Container, Spinner, Tab, Tabs } from "react-bootstrap";
 import "../styles/Home.css";
-import { CustomModal } from "../components/Modal";
-import CustomListGroup from "../components/ListGroup";
-import { Maps } from "../components/Maps";
+import { CustomModal } from "../components/Modal.tsx";
+import CustomListGroup from "../components/ListGroup.tsx";
+import { Maps } from "../components/Maps.tsx";
 import lo from "lodash";
 import { useState } from "react";
 
