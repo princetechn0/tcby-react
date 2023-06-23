@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import CustomNavbar from "../components/Navbar";
+import CustomNavbar from "../components/Navbar.tsx";
 import Footer from "../components/Footer.tsx";
 
 const Layout = ({ loggedInUser }) => {
