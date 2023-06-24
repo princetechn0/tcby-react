@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container, Spinner } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import lo from "lodash";
-import CustomCard from "../components/Card";
+import CustomCard from "../components/Card.tsx";
 import { Masonry } from "masonic";
 import { BACKEND_URL } from "../db";
 import "../styles/City.css";

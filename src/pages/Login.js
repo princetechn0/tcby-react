@@ -7,7 +7,7 @@ import {
   browserLocalPersistence,
   signOut,
 } from "firebase/auth";
-import ToastNotification from "../components/ToastNotification";
+import ToastNotification from "../components/ToastNotification.tsx";
 
 export const Login = ({ loggedInUser, setLoggedInUser }) => {
   const [formData, setFormData] = useState({
