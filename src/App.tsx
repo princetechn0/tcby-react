@@ -10,6 +10,7 @@ import { About } from "./pages/About";
 import { BACKEND_URL } from "./db";
 import { Login } from "./pages/Login";
 import { onAuthStateChanged } from "firebase/auth";
+import React from "react";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState();
