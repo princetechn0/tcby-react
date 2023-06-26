@@ -13,7 +13,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import React from "react";
 
 function App() {
-  const [loggedInUser, setLoggedInUser] = useState();
+  const [loggedInUser, setLoggedInUser]: any = useState();
   const [cities, setCities] = useState([]);
   const [mapPoints, setMapPoints] = useState([]);
   const [generalGroupedCities, setGeneralGroupedCities] = useState([]);
@@ -21,6 +21,7 @@ function App() {
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
+      console.log(user);
       if (user) {
         setLoggedInUser(user.email);
       } else {
@@ -43,14 +44,14 @@ function App() {
 
     data = await fetch(BACKEND_URL + `/people/locations`);
     JSON_CONVERT = await data.json();
-    console.log("List of Map Locations of People", JSON_CONVERT);
+    console.log("List of Map Points of People", JSON_CONVERT);
     setMapPoints(JSON_CONVERT);
 
     setIsLoading(false);
 
     data = await fetch(BACKEND_URL + `/cities/groupedLocations`);
     JSON_CONVERT = await data.json();
-    console.log("General Cities", JSON_CONVERT);
+    console.log("General Grouped Cities", JSON_CONVERT);
     setGeneralGroupedCities(JSON_CONVERT);
   };
 
