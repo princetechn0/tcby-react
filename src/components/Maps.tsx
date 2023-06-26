@@ -25,6 +25,7 @@ export function Maps({ locations }) {
             color={randomColor}
             width={50}
             anchor={[+e.latitude, +e.longitude]}
+            onClick={() => window.open("city/" + e.city, "_blank")}
           />
         );
       })}
