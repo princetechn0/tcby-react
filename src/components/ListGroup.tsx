@@ -3,8 +3,13 @@ import { Link } from "react-router-dom";
 import "../styles/ListGroup.css";
 import { Badge } from "react-bootstrap";
 import React from "react";
+import { ICity } from "../types";
 
-function CustomListGroup({ cities }) {
+type CustomListGroupProps = {
+  cities: ICity[];
+};
+
+function CustomListGroup({ cities }: CustomListGroupProps) {
   return (
     <div className="CustomListGroup">
       <ListGroup>

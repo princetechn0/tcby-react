@@ -5,16 +5,17 @@ import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { City } from "./pages/City";
 import Layout from "./pages/Layout";
-import { Home } from "./pages/Home";
+import { Home } from "./pages/Home.tsx";
 import { About } from "./pages/About";
 import { BACKEND_URL } from "./db";
 import { Login } from "./pages/Login";
 import { onAuthStateChanged } from "firebase/auth";
 import React from "react";
+import { ICity } from "./types";
 
 function App() {
   const [loggedInUser, setLoggedInUser]: any = useState();
-  const [cities, setCities] = useState([]);
+  const [cities, setCities] = useState<Array<ICity>>([]);
   const [mapPoints, setMapPoints] = useState([]);
   const [generalGroupedCities, setGeneralGroupedCities] = useState([]);
   const [isLoading, setIsLoading] = useState(false);

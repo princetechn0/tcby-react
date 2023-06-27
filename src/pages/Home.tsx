@@ -5,6 +5,17 @@ import CustomListGroup from "../components/ListGroup.tsx";
 import { Maps } from "../components/Maps.tsx";
 import lo from "lodash";
 import { useState } from "react";
+import { ICity } from "../types";
+import React from "react";
+
+type HomeProps = {
+  cities: ICity[];
+  peopleLocations: any;
+  onDataChange: any;
+  isLoading: boolean;
+  loggedInUser: any;
+  generalGroupedCities: any;
+};
 
 export const Home = ({
   cities,
@@ -13,7 +24,7 @@ export const Home = ({
   isLoading,
   loggedInUser,
   generalGroupedCities,
-}) => {
+}: HomeProps) => {
   const [tabKey, setTabKey] = useState("Cities");
   return (
     <>
